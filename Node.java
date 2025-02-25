@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+//making the Node class
 public class Node {
-    // Instance variables for the node's value and its left/right children
     private String value;
     private Node left;
     private Node right;
@@ -63,7 +63,7 @@ public class Node {
         makeFileHelper(vals);
         try {
             FileWriter writer = new FileWriter("f.txt"); 
-            // Write each value (or "null") on a new line in the file
+            // Write each value or null for empyt space
             for(String str: vals) {
                 writer.write(str + System.lineSeparator());
             }
@@ -81,14 +81,14 @@ public class Node {
      */
     public void makeFileHelper(ArrayList<String> vals){
         vals.add(value);
-        // If left child exists, recursively add its values; else add "null"
+        // If left child exists, recursively add its values. otherwise just add null
         if(left != null){
             left.makeFileHelper(vals);
         }
         else {
             vals.add("null");
         }
-        // If right child exists, recursively add its values; else add "null"
+        // If right child exists, recursively add its values. otherwise just add null
         if(right != null){
             right.makeFileHelper(vals);
         }
@@ -113,7 +113,7 @@ public class Node {
             in.close();
         }
         catch(IOException ioe){
-            // Exception is caught but not handled specifically
+            // Exception is caught but there's no need to handle it 
         }
         
         // Use an integer array to keep track of the current index while building the tree recursively
@@ -151,7 +151,6 @@ public class Node {
         try {
             Thread.sleep(1000); // Pause for 1 second
         } catch(Exception e) {
-            // Exception is caught but not handled specifically
         }
         // Begin the guessing process starting from the root of the tree
         guess(n, n);
@@ -167,7 +166,7 @@ public class Node {
         String in2 = "";
         String in3 = "";
         
-        // If at a leaf node, make a guess
+        // If at a leaf node, that means that we have an animal and can make a guess
         if(n.getLeft() == null || n.getRight() == null){
             System.out.println("I guess that your animal is a " + n.getValue() + ". Am I correct?");
             in = input.nextLine();
@@ -175,8 +174,9 @@ public class Node {
             if(in.contains("y") || in.contains("Y") || in.contains("yes") || in.contains("Yes") || in.contains("YES")){
                 System.out.println("I win!");
                 try {
-                    Thread.sleep(1000); // Pause for 1 second
+                    Thread.sleep(1000);
                 } catch(Exception e) {}
+                //ask the user to play again
                 System.out.println("Would you like to play again?");
                 in = input.nextLine();
                 if(in.contains("y") || in.contains("Y") || in.contains("yes") || in.contains("Yes") || in.contains("YES")){
@@ -268,7 +268,7 @@ public class Node {
         // If not at a leaf, ask a question stored in the current node
         System.out.println(n.getValue());
         try {
-            Thread.sleep(500); // Pause briefly to allow the user to read the question
+            Thread.sleep(500);
         } catch(Exception e) {}
         in = input.nextLine();
         // Based on the user's response, traverse left or right in the tree
